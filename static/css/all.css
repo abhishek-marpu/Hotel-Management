@@ -1,0 +1,79 @@
+*{
+    text-transform: capitalize;
+    box-sizing: border-box;
+    font-family: "Wix Madefor Text", sans-serif;
+    font-optical-sizing: auto;
+}
+.grid-box{
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+.inner-grid-box{
+    display: grid;
+    gap: 20px;
+    width: 70%;
+    box-sizing: border-box;
+}
+*{
+    margin: none;
+    border: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: auto;
+}
+
+table{
+    width: 50vw;
+    font-size: 20px;
+    text-transform: capitalize;
+    padding: 0;
+    border: 0;
+    
+}
+.display-container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    gap: 0;
+    align-items: center;
+
+}
+a{
+    text-decoration: none;
+}
+tr{
+    height: 50px;
+}
+th{
+    text-align: start;
+    width: 25%;
+    margin: 15px;
+}
+td{
+    width: 25%;
+    text-align: start;
+    margin: 0;
+    border: 1px solid salmon;
+    padding: 20px;
+    border-collapse: initial;
+}
+.inner-container{
+    border: 1px solid salmon;
+    padding: 100px;
+}
+.messages{
+    color: salmon;
+    font-size: 24px;
+}
+.item img{
+    width: 40vw;
+}
+.images{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    flex-wrap: wrap;
+    gap:20px ;
+}
