@@ -1,0 +1,96 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+    <style>
+        .container{
+            height: 100vh;
+            width: 100vw;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+        }
+        .inner-container{
+            width: 35vw;
+            height: 78vh;
+            border: 1px solid black;
+            padding: 50px 90px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-size: 75% 70%;
+            justify-content: center;
+            align-items: center;
+            background-image: url("{% static 'images/bg-5.jpeg' %}");
+        }
+        label{
+            display: block;
+        }
+        input{
+            height: 45px;
+            width: 100%;
+            border: 1px solid black;
+            margin: 10px 0px;
+        }
+        #submit{
+            background-color: #4285F4;
+            border: 0;
+            color: #fff;
+            font-size: 15px;
+            text-align: center;
+        }
+        #submit:hover{
+            transform: scale(0.99);
+        }
+        #submit:active{
+            transform: scale(0.98);
+        }
+        h1{color: #4285F4;}
+        #messages{
+            color: red;
+        }
+    </style>
+    <div class="container">
+        <div class="inner-container">
+            <h1>Sign Up page</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                <label for="username">username</label>
+                <input type="text" name="username" id="username" required>
+
+                <label for="name">name</label>
+                <input type="text" name="name" id="name" required>'
+                '
+                <label for="role">role</label>
+                <input type="text" name="role" id="role" required>
+
+                <label for="contact_no">contact no</label>
+                <input type="number" name="contact_no" id="contact_no" required>
+
+                <label for="password">password</label>
+                <input type="password" name="password" id="password">
+                <label for="confirmPassword" >confirm password</label>
+                <input onkeyup="checkPassword()" type="text" name="confirmPassword" id="confirmPassword" required>
+                <div id="messages">
+                </div>
+                <input id="submit"  type="submit"  value="save"/>
+
+            </form>
+        </div>
+    </div>
+    <script>
+        const checkPassword=()=>{
+            const p=document.getElementById('password').value
+            const cP=document.getElementById('confirmPassword').value
+            const div=document.getElementById('messages')
+            const btn=document.getElementById('submit')
+            console.log(p,cP,'password')
+            if (p!=cP){
+                div.innerHTML='two passwords dont match'
+                btn.type='none'
+            }
+            else{
+                div.innerHTML=''
+                btn.type='submit'
+            }
+        }
+    </script>
+{% endblock %}

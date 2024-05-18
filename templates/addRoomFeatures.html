@@ -1,0 +1,79 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+    .form-box{
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-container{
+        display: grid;
+        padding: 20px;
+        width: 40vw;
+        border: 1px solid salmon;
+    }
+    input,select{
+        height: 50px;
+        border: 1px solid gray;
+    }
+    form{
+        display: grid;
+        padding: 50px;
+        gap: 20px;
+    }
+    input[type='submit']{
+        background-color: salmon;
+        border: none;
+        color: #fff;
+    }
+    input[type='submit']:hover{
+        background-color: rgb(214, 90, 76);
+        transform: scale(0.99);
+    }
+    input[type='submit']:active{
+        transform: scale(0.98);
+    }
+    .messages{
+        color: red;
+        font-size: 15px;
+    }
+    textarea{
+        border: 1px solid gray;
+    }
+</style>
+    <div class="form-box">
+        <div class="form-container">
+            <div class="links">
+                <a href="{% url 'employee' %}">&larr; home</a>
+                <a href="{% url 'search' %}">Check Rooms availability</a>
+            </div>
+            <form action="" method="post">
+                <div class="messages">
+
+                    {% for msg in messages %}
+                        {{msg}}
+                    {% endfor %}
+                </div>
+                <h1>Add Features for Room Type</h1>
+                {% csrf_token %}
+                {% if room_types %}
+                <label> Room Type</label>
+                <select name="room_type" id="room_type">
+                    {% for type in room_types %}
+                        <option value="{{type.id}}">{{type}}</option>
+                    {% endfor %}
+                </select>
+                <textarea name="features" id="" cols="30" rows="10"></textarea>
+                {% else %}
+                <h3>
+                    all room types have issued features
+                </h3>
+                {% endif %}
+                <input type="submit" value="Add Features">
+            </form>
+        </div>
+    </div>
+{% endblock %}

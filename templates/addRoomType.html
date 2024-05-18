@@ -1,0 +1,77 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+    .form-box{
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-container{
+        display: grid;
+        width: 40vw;
+        padding: 20px;
+        border: 1px solid salmon;
+    }
+    input,select{
+        height: 50px;
+        border: 1px solid gray;
+    }
+    form{
+        display: grid;
+        padding: 50px;
+        gap: 20px;
+    }
+    input[type='submit']{
+        background-color: salmon;
+        border: none;
+        color: #fff;
+    }
+    input[type='submit']:hover{
+        background-color: rgb(214, 90, 76);
+        transform: scale(0.99);
+    }
+    input[type='submit']:active{
+        transform: scale(0.98);
+    }
+    .messages{
+        color: red;
+        font-size: 15px;
+    }
+
+</style>
+    <div class="form-box">
+        
+        <div class="form-container">
+            <div class="links">
+                <a href="{% url 'employee' %}">&larr; home</a>
+                <a href="{% url 'search' %}">Check Rooms availability</a>
+            </div>
+            {% if taxes %}
+            <form action="" method="post">
+                <h1>Add New Room Type</h1>
+                {% csrf_token %}
+                <label> Name of the type</label>
+                <input type="name" name='name' required/>
+                <label for="room_type">choose tax policy</label>
+                
+                <select name="tax" id="room_type">
+                    {% for tax in taxes %}
+                        <option value="{{tax.id}}">{{tax.tax_percent}}%</option>
+                    {% endfor %}
+                </select>
+                
+                <label> area of the room type</label>
+                <input type="number" name='area' required/>
+                <label> price</label>
+                <input type="number" name='price' required/>
+                <input type="submit" value="Add Room type">
+            </form>
+            {% else %}
+                <h1>add tax policies to add room types</h1>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

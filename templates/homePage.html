@@ -1,0 +1,76 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+    <style>
+        .homePage{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .inner{
+            width: 80vh;
+            padding: 20px;
+            height: 50vh;
+            display: grid;
+            gap: 20px;
+            border: 1px solid black;
+            background-image: url("{% static 'images/backgroundImage.webp'  %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-size: 100% 100%;
+        }
+        .title h1{
+            text-align: center;
+            display: grid;
+            font-size: 40px;
+        }
+        .inner-right{
+            display: flex;
+            align-self: end;
+            gap: 20px;
+            justify-content: end;
+        }
+        .btn-link{
+            display: flex;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid grey;
+        }
+        .btn-link:hover{
+            background-color: rgb(230, 220, 220);
+            transform: scale(0.99);
+        }
+        .btn-link:active{
+            transform: scale(0.98);
+        }
+        a{
+            padding: 15px;
+            color: #000;
+            font-size: 20px;
+        }
+        a:active{
+            color: black;
+        }
+    </style>
+    <div class="homePage">
+        <div class="inner">
+            <div class="title">
+                <h1>Hotel ABCDE Management portal</h1>
+            </div>
+            <div class="inner-right">
+                <div class="btn-link">
+                    <a href="{% url 'employee' %}">Employee Portal</a>
+                </div>
+                <div class="btn-link">
+                    <a href="{% url 'customer' %}">Customer Portal</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

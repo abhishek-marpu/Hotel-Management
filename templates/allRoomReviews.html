@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+    {% block content%}
+    <div class="grid-box">  
+        <div class="inner-grid-box">
+            <h1>Room {{review.room.room_number}} reviews</h1>
+            <div class="links">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'employee' %}">&larr; home</a>
+                {% else %}
+                    <a href="{% url 'customer' %}">&larr; home</a>
+                {% endif %}
+                <a href="{% url 'search' %}">Check Rooms availability</a>
+            </div>
+            
+            <table>
+                <tr>
+                    <td>
+                        Room type
+                    </td>
+                    <td>
+                        {{room.room_type}}
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        Room Size (in Sft)
+                    </td>
+                    <td>
+                        {{room.room_type.area}}
+                    </td>
+                </tr>
+
+            </table>
+            <table>
+                {% if reviews %}
+                    <tr>
+                        <th>
+                            room reviewed by
+                        </th>
+                        <th>
+                            review
+                        </th>
+                    </tr>
+                {% for review in reviews %}
+                    <tr>
+                        <td>
+                            {{review.customer.name}}
+                        </td>
+                        <td>
+                            {{review.review}}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+                    <h2>no reviews</span>
+            {% endif %}
+        </div>
+    </div>
+    {% endblock %}

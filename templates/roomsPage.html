@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: none;
+            border: none;
+            font-family: "Roboto", sans-serif;
+            font-weight: auto;
+        }
+
+        table{
+            width: 50vw;
+            font-size: 20px;
+            text-transform: capitalize;
+            padding: 0;
+            border: 0;
+            
+        }
+        .display-container{
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            justify-content: center;
+            gap: 0;
+            align-items: center;
+
+        }
+        a{
+            text-decoration: none;
+        }
+        tr{
+            height: 50px;
+        }
+        th{
+            text-align: start;
+            width: 25%;
+            margin: 15px;
+        }
+        td{
+            width: 25%;
+            text-align: start;
+            margin: 0;
+            border: 1px solid salmon;
+            border-collapse: initial;
+        }
+        .inner-container{
+            border: 1px solid salmon;
+            padding: 100px;
+        }
+        .messages{
+            color: salmon;
+            font-size: 24px;
+        }
+        .upcoming-container{
+            display: flex;
+            justify-content: right;
+            color: salmon;
+            font-size: 18px;
+        }
+        .upcoming-container a:hover{
+            color: rgb(135, 54, 45);
+
+
+        }
+    </style>
+</head>
+    <body>
+        <div class="display-container">
+            <div class="inner-container">
+                <div class="upcoming-container">
+                    <a href="{% url 'check-ins' %}">Show Upcoming Check-ins</a>
+                </div>
+                <div class="messages">
+                    {% for messg in messages %}
+                        {{messg}}
+                    {% endfor %}
+                </div>
+                
+                <table>
+                    <h1>Hotel Room Details</h1>
+                    {% if rooms %}
+                        <tr>
+                            <th>
+                                Room No
+                            </th>
+                            <th>
+                                Room type
+                            </th>
+                            <th>
+                                available From
+                            </th>
+                            <th>
+                                price
+                            </th>
+                            <th>
+                
+                            </th>
+                        </tr>
+                    {% endif %}
+                    {% for room in rooms%}
+                    <tr>
+                        <td>{{room.room_number}}</td>
+                        <td><b>{{room.Room_type}}</b></td>
+                        <td>
+                            <b href="{% url 'reserve' room.room_number %}">
+                                {% if room.available %}
+                                    <b> {{room.last_available_date}}</b>
+                                {% else %}
+                                    <b> {{room.last_available_date}}</b>
+                                {% endif %}
+                            </b>
+                        </td>
+                        <td>
+                            <a href="{% url 'reserve' room.room_number %}">reserve</a>
+                       </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Document</title> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/all.css'%}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">    
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+    }
+    a{
+        color: salmon;
+    }
+    a:hover{
+        columns:rgba(104, 32, 25, 0.799) ;
+    }
+    .link-container{
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top:0px;
+    }
+    .links{
+        display: flex;
+        width: 50%;
+        justify-content: space-between;
+        height: 50px;
+        padding: 20px;
+        align-items: center;
+    }
+    h1{
+        margin: 0;
+    }
+</style>
+<body>
+    {% if request.path != '/' %}
+    <div class="link-container">
+        <!-- <div class="links">
+            
+            <a href="{% url 'home' %}">&larr; home</a>
+            
+            {% if request.user != None %}
+            <a href="{% url 'logout' %}"> logout</a>
+            {% endif %}
+        </div> -->
+    </div>
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

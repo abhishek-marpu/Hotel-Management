@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+    {% block content%}
+    <div class="grid-box">  
+        <div class="inner-grid-box">
+            <h1>Room {{room.room_number}} details</h1>
+            <div class="links">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'employee' %}">&larr; home</a>
+                {% else %}
+                    <a href="{% url 'customer' %}">&larr; home</a>
+                {% endif %}
+                <a href="{% url 'search' %}">Check Rooms availability</a>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        Room type
+                    </td>
+                    <td>
+                        {{room.room_type}}
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        Room Size (in Sft)
+                    </td>
+                    <td>
+                        {{room.room_type.area}}
+                    </td>
+                </tr>
+                <tr>
+                    {% if features %}
+                    <td>
+                        Room features
+                    </td>
+                    <td>
+                        {{features.feature}}
+                    </td>
+                    {% else %}
+                        <td> room features not added</td>
+                        <br>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>
+                        Room Reviews
+                    </td>
+                    <td>
+                        <a href="{% url 'room-reviews' room.room_number %}">see reviews</a>
+                    </td>
+                </tr>
+            </table>
+            <div class="images">
+                {% for img in images %}
+                    <img src="{{img.image.url}} " style="width:100%; height:250px">
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}

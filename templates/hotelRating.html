@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,900&display=swap" rel="stylesheet">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            border: 0;
+            font-family: "Roboto", sans-serif;
+            font-weight: auto;
+            box-sizing: border-box;
+        }
+        .reservation-container{
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+        .reservation-container form{
+            display: grid;
+            width: 30vw;
+            border: 1px solid salmon;
+            padding: 50px;
+        }
+
+        .reservation-container form input,select{
+            margin: 5px;
+            border: 1px solid grey;
+            padding: 5px;
+            color: black;
+        }
+
+        .reservation-container form h1{
+            color: salmon;
+        }
+
+        input:focus,select:focus{
+            outline: 1px solid salmon;
+        }
+        input,select{
+            height: 45px;
+            width: 100%;
+            
+        }
+        
+        input[type='submit']{
+            background-color: salmon;
+            border: 1px solid salmon;
+        }
+
+        .flex-box{
+            display: flex;
+            justify-content: space-between;
+        }
+        label{
+            margin: 5px;
+        }
+        .links{
+            margin-bottom: 5px;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="reservation-container">
+        
+        <form action="" method="post">
+            <div class="links">
+                <a href="{% url 'customer' %}">&larr; back</a>
+            </div>
+            <h1>hotel ABCDE Rating</h1>
+            {% csrf_token %}
+            <label for="">Name</label>
+            <input type="text" name="name"  required>
+            <label for="">address</label>
+            <input type="text" name="address"  required>
+            <label for="">contact no</label>
+            <input type="number" name="contact_no"  required>
+            <label for="">give a rating</label>
+            <select name="rating" id="" required>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+            </select>
+            <input type="submit" value="record rating">
+        </form>
+    </div>
+</body>
+</html>
